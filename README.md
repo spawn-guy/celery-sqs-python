@@ -39,7 +39,7 @@ it is possible to run this app as an AWS Elastic Beanstalk application.
    ```
    pycurl = { version = "*", markers = "sys_platform != 'win32'", install_command = "pip install pycurl --global-option='--with-openssl' --compile" }
    ```
-3. run `pipenv update -dev` to sync dependencies
+3. run `pipenv update --dev` to sync dependencies
 4. deploy the application using `eb deploy` command.
 5. update ENVIRONMENT variables in AWS Elastic Beanstalk console to match your `.env` file.
 6. run `app/stress_test.py` script from root folder locally
