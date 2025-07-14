@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+python-dotenv = "*"  # for .env file support
+#kombu = { git = "https://github.com/akosel/kombu.git", ref = "main" }
+kombu = { git = "https://github.com/spawn-guy/kombu.git", ref = "feature_optional_pycurl_u3speed" }
+#kombu = { git = "https://github.com/spawn-guy/kombu.git", ref = "feature_urllib3_speedup" }
+#pycurl = { version = "*", markers = "sys_platform != 'win32'", install_command = "pip install pycurl --global-option='--with-openssl' --compile" }
+#pycurl = { version = "*", markers = "sys_platform != 'win32'" }
+#kombu = "*"
+#kombu = "5.4.2"
+celery = { extras = ["sqs", "redis"] }
+#celery = { version="5.4.2", extras = ["sqs", "redis"] }
+
+[dev-packages]
+gevent = "*"
+
+[requires]
+python_version = "3.11"
