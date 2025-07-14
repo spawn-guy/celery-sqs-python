@@ -19,7 +19,7 @@ This repository provides a Dockerized environment for testing Celery application
 2. Testing withOUT PyCURL
    1. delete/purge existing versions of docker container images
    2. ensure `pycurl=...` line is _disabled_ in `Pipfile`
-   3. run `pipenv update -dev` to sync dependencies
+   3. run `pipenv update --dev` to sync dependencies
    4. build and start Docker Compose environment
    5. run `app/stress_test.py` script from root folder
 
@@ -27,7 +27,7 @@ This repository provides a Dockerized environment for testing Celery application
 3. Testing WITH PyCURL
    1. delete/purge existing versions of docker container images
    2. ensure `pycurl=...` line is _enabled_ in `Pipfile`
-   3. run `pipenv update -dev` to sync dependencies
+   3. run `pipenv update --dev` to sync dependencies
    4. build and start Docker Compose environment
    5. run `app/stress_test.py` script from root folder
 
