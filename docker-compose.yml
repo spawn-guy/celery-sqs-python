@@ -1,0 +1,50 @@
+version: "3.9"
+services:
+
+  worker:
+    build: .
+    command: celery --app app.myapp worker --loglevel=info
+    volumes:
+      - ./app:/usr/src/app # debug
+#      - ./env.docker:/usr/src/.env
+#      - ${DOCKER_STORAGE_ROOT}/api-data:/data
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+    secrets:
+      - source: aws
+        target: /root/.aws
+        uid: "1000"
+        gid: "1000"
+        mode: 0700
+
+  beat:
+    build: .
+    command: celery --app app.myapp beat --loglevel=info
+    volumes:
+      - ./app:/usr/src/app # debug
+#      - ./env.docker:/usr/src/.env
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+    secrets:
+      - source: aws
+        target: /root/.aws
+        uid: "1000"
+        gid: "1000"
+        mode: 0700
+
+#  redis:
+#    image: redis:7-alpine
+#    restart: unless-stopped
+#    ports:
+#      - 6379:6379
+#    volumes:
+#      - ./redis-data:/data
+
+
+secrets:
+  aws:
+    file: "~/.aws"
